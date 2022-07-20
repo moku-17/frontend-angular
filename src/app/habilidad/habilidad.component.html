@@ -1,0 +1,50 @@
+<section id="skills">
+    <div class="position-relative overflow-hidden p-3 p-md-4 m-md-5">
+        <div class="container d-flex justify-content-between align-items-baseline">
+            <h2>Hard & s<span class="text-danger">o</span>ft skills</h2>
+            <a href="#"><i class="bi bi-plus-square-fill"></i></a>
+        </div>
+        <div class="card container pb-3">
+            <h4>Tecnologías & software</h4>
+            <p class="lhxl"><span *ngFor="let habilidad of habilidades"><span *ngIf="habilidad?.tipo=='tecno'"
+                        class="badges mx-1"><img src="{{habilidad?.imageIcon}}" alt="{{habilidad?.nombre}}"
+                            height="24"> {{habilidad?.nombre}} <a (click)="onOpenModal(habilidad,'delete')" data-original-title="Eliminar"><i
+                                class="bi bi-x-lg"></i></a></span></span>
+            </p>
+            <hr>
+            <h4>Aptitudes</h4>
+            <p class="lhxl"> <span *ngFor="let habilidad of habilidades"><span *ngIf="habilidad?.tipo=='aptitud'"
+                        class="badges badge-white mx-1"><i class="bi bi-{{habilidad?.imageIcon}} text-danger"></i>
+                        {{habilidad?.nombre}} <a (click)="onOpenModal(habilidad,'delete')" data-original-title="Eliminar"><i
+                                class="bi bi-x-lg"></i></a></span></span>
+            </p>
+            <hr>
+            <h4>Idiomas</h4>
+            <p class="lhxl"> <span *ngFor="let habilidad of habilidades"><span *ngIf="habilidad?.tipo=='idioma'"
+                        class="badges badge-white mx-1">
+                        {{habilidad?.nombre}} <span class="text-danger">|</span>&nbsp;<span
+                            class="text-secondary">{{habilidad?.nivel}} <a (click)="onOpenModal(habilidad,'delete')"><i
+                                    class="bi bi-x-lg"></i></a></span></span></span>
+            </p>
+        </div>
+    </div>
+</section>
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteHabilidadModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar {{deleteHabilidad?.nombre}}</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Confirma eliminar {{deleteHabilidad?.nombre}}?</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button (click)="onDeleteHabilidad(deleteHabilidad!.id)" class="btn btn-danger"
+                        data-dismiss="modal">Sí</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

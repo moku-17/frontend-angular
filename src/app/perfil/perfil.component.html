@@ -1,0 +1,125 @@
+<div id="profile" *ngFor="let perfil of perfiles">
+    <header>
+        <div class="container">
+            <div id="avatar" class="mt-5">
+                <img src="{{perfil?.imageProfile}}" class="rounded-circle img-thumbnail" width="200" alt="Mónica Okuma">
+            </div>
+            <div class="header-content">
+                <div class="d-flex align-items-baseline">
+                    <h1 class="mb-3">{{perfil?.nombre}} <span
+                            class="text-danger text-uppercase">{{perfil?.apellido}}</span></h1>
+                    <a (click)="onOpenModal(perfil, 'edit')" class="ms-2"><i class="bi bi-pencil-fill"></i></a>
+                </div>
+                <p>{{perfil?.ocupacion}}
+                </p>
+                <a class="btn btn-outline-danger" href="mailto:{{perfil?.email}}"><i class="bi bi-envelope"></i>
+                    Mensajes</a>
+                <p><a href="#" class="scroll-down" address="true"></a></p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </header>
+    <section id="about">
+        <div class="position-relative overflow-hidden p-3 p-md-4 m-md-5">
+            <div class="container d-flex justify-content-between align-items-baseline">
+                <h2>Perfil pers<span class="text-danger">o</span>nal</h2>
+                <a (click)="onOpenModal(perfil, 'edit')" class="ms-2"><i class="bi bi-pencil-fill"></i></a>
+            </div>
+            <div *ngFor="let perfil of perfiles" class="card p-4 container wow fadeInUp" data-wow-duration="1s"
+                data-wow-delay="0.5s">
+                <p class="p-3">
+                    Fecha de nacimiento:
+                    {{perfil?.fechaNac}}<br>
+                    Nacionalidad: {{perfil?.nacionalidad}}<br>
+                    Lugar de residencia: {{perfil?.residencia}}</p>
+                <p class="p-heading">{{perfil?.sobreMi}}</p>
+                <hr>
+                <figure>
+                    <blockquote class="blockquote">
+                        <p class="text-danger small">“{{perfil?.cita}}”</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer lhxl">
+                        {{perfil?.autor}}
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="modal fade" id="updatePerfilModal" tabindex="-1" role="dialog" aria-labelledby="updatePerfilModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updatePerfilModalLabel">Editar perfil</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editForm="ngForm">
+                    <div class="form-group mb-3">
+                        <label for="name">Nombre</label>
+                        <input type="text" ngModel="{{editPerfil?.nombre}}" name="nombre" class="form-control"
+                            id="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" ngModel="{{editPerfil?.apellido}}" name="apellido" class="form-control"
+                            id="apellido" placeholder="Apellido">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="ocupacion">Ocupación</label>
+                        <input type="text" ngModel="{{editPerfil?.ocupacion}}" name="ocupacion" class="form-control"
+                            id="ocupacion" placeholder="Ocupación">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" ngModel="{{editPerfil?.email}}" name="email" class="form-control" id="email"
+                            placeholder="Email">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="fechaNac">Fecha de nacimiento</label>
+                        <input type="text" ngModel="{{editPerfil?.fechaNac}}" name="fechaNac" class="form-control"
+                            id="fechaNac" placeholder="Fecha de nacimiento">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nacionalidad">Nacionalidad</label>
+                        <input type="text" ngModel="{{editPerfil?.nacionalidad}}" name="nacionalidad"
+                            class="form-control" id="nacionalidad" placeholder="Nacionalidad">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="residencia">Lugar de residencia</label>
+                        <input type="text" ngModel="{{editPerfil?.residencia}}" name="residencia" class="form-control"
+                            id="residencia" placeholder="Lugar de residencia">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="sobreMi">Acerca de mí</label>
+                        <textarea type="text" ngModel="{{editPerfil?.sobreMi}}" name="sobreMi" class="form-control"
+                            id="sobreMi" placeholder="Acerca de mí" rows="5"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cita">Cita favorita</label>
+                        <textarea type="text" ngModel="{{editPerfil?.cita}}" name="cita" class="form-control" id="cita"
+                            placeholder="Cita favorita" rows="5"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="autor">Autor de la cita</label>
+                        <input type="text" ngModel="{{editPerfil?.autor}}" name="autor" class="form-control" id="autor"
+                            placeholder="Autor de la cita">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="imageProfile">URL de imagen de perfil</label>
+                        <input type="text" ngModel="{{editPerfil?.imageProfile}}" name="imageProfile"
+                            class="form-control" id="imageProfile" placeholder="URL de imagen de perfil">
+                    </div>
+                    <input type="hidden" ngModel="{{editPerfil?.id}}" name="id" class="form-control" id="id">
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                        <button (click)="onUpdatePerfil(editForm.value)" data-dismiss="modal"
+                            class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
