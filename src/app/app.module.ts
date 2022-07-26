@@ -10,13 +10,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ExperienciaComponent } from './experiencia/experiencia.component';
 import { FooterComponent } from './footer/footer.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExperienciaService } from './experiencia/experiencia.service';
 import { PerfilService } from './perfil/perfil.service';
 import { HabilidadComponent } from './habilidad/habilidad.component';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 import { HabilidadService } from './habilidad/habilidad.service';
 import { ProyectoService } from './proyecto/proyecto.service';
+import { LoginComponent } from './login/login.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -27,20 +30,24 @@ import { ProyectoService } from './proyecto/proyecto.service';
     FooterComponent,
     PerfilComponent,
     HabilidadComponent,
-    ProyectoComponent
+    ProyectoComponent,
+    LoginComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     PerfilService,
     ExperienciaService,
     EducacionService,
     HabilidadService,
-    ProyectoService
+    ProyectoService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
